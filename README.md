@@ -49,7 +49,8 @@ HTTPS encrypts the data before sending it.
 * How does a server interpret the following url's query paramter.  What data structure does it create on the server?
 
 ```
-Identifies the user only wants puppies named fido, max, and moxie
+Identifies the user only wants puppies named fido, max, and moxie.
+Creates JSON data structure on the server.
 ```
 
 
@@ -69,8 +70,8 @@ GET, POST, PUT, DELETE
 
 ```
 GET - Simply gets a resource from the server. 
-POST - Changes something on a server.
-PUT - updates info on the server.
+POST - Used when the client wants to send the server some new information. POST requests are not typically idempotent.
+PUT - updates info on the server that already exists. PUT requests are usually idempotent.
 DELETE - deletes something from the server.
 ```
 
@@ -200,9 +201,11 @@ console.log(obj.age)
 
 ```
 var myObj = JSON.parse('{ "Companies":[ { "company": "Github", "age": 7, "categories": "Services,Internet,Software"},{ "company": "Airbnb", "age": 6, "categories": "Hotels,Travel"},{ "company": "Square", "age": 7, "categories": "FinTech,Hardware + Software,Finance"},{ "company": "Dropbox", "age": 11, "categories": "Cloud Data Services,Storage,Web Hosting"} ]}');
-myObj.Companies.map(function(companyObj) { 
+myObj.Companies.forEach(function(companyObj) { 
     console.log(companyObj.company)
 });
+--Changed to forEach since we are only console.logging the company names. 
+--We don't need to return anything. Map always needs to return an Array of the same length as the input.
 ```
 
 * The following is javascript.  Convert the object to a string and console log it.
